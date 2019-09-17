@@ -19,7 +19,7 @@ gulp.task('sass', function () {
 });
     
 gulp.task('sass:watch', function () {
-    gulp.watch('./css/*.scss', ['sass']);
+    gulp.watch('./css/*.scss', gulp.series(['sass']));
 });
     
 gulp.task('browser-sync', function () {
@@ -71,6 +71,6 @@ gulp.task('usemin', function() {
   });
 
 // Default task
-gulp.task('default', gulp.series('browser-sync', 'sass:watch'));
+gulp.task('default', gulp.parallel('browser-sync', 'sass:watch'));
 
 gulp.task('build', gulp.series('clean', 'copyfonts', gulp.parallel('imagemin', 'usemin')));
